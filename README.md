@@ -5,29 +5,29 @@ First LAC hack project: Twitter something-or-other
 
 # Installation on OS X
 
-	## Install brew, python, and git
+## Install brew, python, and git
 
-		You can figure this out
+	You can figure this out
 
-	## Install other stuff
+## Install other stuff
 
-		`sudo easy_install pip`
-		`sudo pip install virtualenv`
-		`brew install mysql`
+	`sudo easy_install pip`
+	`sudo pip install virtualenv`
+	`brew install mysql`
 
-	## Set up a virtual environment
+## Set up a virtual environment
 
-		`virtualenv pylon-env`
+	`virtualenv pylon-env`
 
-	## Grab git repo
-/
-		`git clone https://github.com/ajyang818/pylon.git`
+## Grab git repo
 
-	## Activate environment
+	`git clone https://github.com/ajyang818/pylon.git`
 
-		`. pylon-env/bin/activate`
+## Activate environment
 
-	## Install python dependencies
+	`. pylon-env/bin/activate`
 
-		`cd pylon-env/pylon`
-		`pip install -r conf/dependencies.txt`
+## Install python dependencies
+
+	`cd pylon-env/pylon`
+	`pip install -r conf/dependencies.txt`
