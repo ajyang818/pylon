@@ -1,4 +1,7 @@
 import os
+from os.path import abspath, dirname, join
+
+PROJECT_ROOT = abspath(join(dirname(__file__), '../'))
 
 # Django settings for Pylon project.
 
@@ -110,7 +113,7 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     # TO FIX
-    '/Templates',
+    join(PROJECT_ROOT, 'templates'),
 )
 
 INSTALLED_APPS = (
