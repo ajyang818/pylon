@@ -4,10 +4,11 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views.generic.base import RedirectView
 
-from tweet.views import HomeView
+from tweet.views import HomeView, LoggedInSuccessView
 
 admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^$', HomeView.as_view(), name="home"),
+    url(r'^loggedin/$', LoggedInSuccessView.as_view(), name="logged_in_success"),
 )
