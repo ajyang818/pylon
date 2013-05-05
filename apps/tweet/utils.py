@@ -21,18 +21,24 @@ def save_tweets(raw_tweets):
     tweets_author = raw_tweets[0]['user']
     tweets_author_id = tweets_author['id']
     author_kwargs = {
+        'author_id': tweets_author_id,
         'screen_name': tweets_author.get('screen_name'),
         'author_name': tweets_author.get('name'),
         # Stupid datetime...need to figure out how to parse
         # 'author_created': tweets_author.get('created_at'),
         'author_description': tweets_author.get('description')
     }
-    author, created = Author.objects.get_or_create(author_id=tweets_author_id,
-                                                    **author_kwargs)
+    # TO-DO: Figure out get_or_create on a variable but save with **kwargs
+    try:
+        author = Author.objects.get(author_id=tweets_author_id)
+    except Author.DoesNotExist:
+        author = Author(**author_kwargs)
+        author.save()
 
     for tweet in raw_tweets:
         tweet_id = tweet['id']
         tweet_kwargs = {
+            'tweet_id': tweet_id,
             'author': author,
             'content': tweet['text'],
             # date_published: tweet['created_at'],
@@ -42,7 +48,10 @@ def save_tweets(raw_tweets):
             # 'user_mentions': tweet['entities'].get('user_mentions'),
             # hashtags: TO BE IMPLEMENTED
         }
-        our_tweet, created = Tweet.objects.get_or_create(tweet_id=tweet_id,
-                                                            **tweet_kwargs)
+        try:
+            our_tweet = Tweet.objects.get(tweet_id=tweet_id)
+        except Tweet.DoesNotExist:
+            our_tweet = Tweet(**tweet_kwargs)
+            our_tweet.save()
 
     return
