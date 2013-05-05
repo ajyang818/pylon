@@ -2,7 +2,7 @@
 
 from django.shortcuts import render, redirect
 from django.views.generic.base import TemplateView
-import pdb
+import pdb, urllib, urllib2, json
 
 from twython import Twython
 
@@ -28,11 +28,30 @@ class HomeView(TemplateView):
 
         home_timeline = t2.getHomeTimeline()
 
+        url = 'http://text-processing.com/api/sentiment/'
+
+        overallSentiment = 0
+
+        for t in home_timeline:
+            try:
+                values = {'text':t['text']}
+                data = urllib.urlencode(values)
+                req = urllib2.Request(url,data)
+                response = urllib2.urlopen(req)
+                response = json.load(response)
+                if (response['label'] == 'pos'):
+                    overallSentiment += 1
+                elif (response['label'] == 'neg'):
+                    overallSentiment -= 1
+
+            except UnicodeEncodeError as e:
+                pass
+
         context = {
-            'auth_tokens': {'oauth_token':oauth_token,'oauth_token_secret':oauth_token_secret},
+            'overallSentiment': overallSentiment,
             'home_timeline': home_timeline,
         }
-        template = "logged_in_success.html"
+        template = "overall_sentiment.html"
         return render(request, template, context)
 
 

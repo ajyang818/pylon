@@ -1,0 +1,12 @@
+The overall sentiment of your of your home timeline is
+{% if overallSentiment > 0 %}
+possitive :D 
+{% elif overallSentiment < 0 %}
+negative :'( 
+{% else %}
+neutral... BORING 
+{% endif %}
+<br />
+With score -> {{ overallSentiment }}
+<br /><br />
+Home Timeline: {{ home_timeline }}
