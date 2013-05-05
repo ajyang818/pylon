@@ -3,6 +3,11 @@ from os.path import abspath, dirname, join
 
 PROJECT_ROOT = abspath(join(dirname(__file__), '../'))
 
+LOGIN_CALLBACK_URL = 'http://localhost:8000/loggedin'
+
+APP_KEY = 'GVu8UN13fVaVayJ02yvrA'
+APP_SECRET = 'BztuG3PbMdMCwVbSExFgdYtoN4zonDkeYPbFd9qFjp4'
+
 # Django settings for Pylon project.
 
 DEBUG = True
@@ -16,6 +21,14 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'pylon_local',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': '127.0.0.1',
+        'PORT': '',
+    },
+    'production': {
         'ENGINE': 'django.db.backends.mysql',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
         # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),  # Or path to database file if using sqlite3.
         'NAME': 'pylon',  # Or path to database file if using sqlite3.
