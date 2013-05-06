@@ -1,9 +1,16 @@
-{% load staticfiles %}
+{% extends "shared/header.html" %}
 
-This is the home page.
+{% block title %}Pylon Home{% endblock %}
 
-{{ body }}
+{% block content %}
+<body>
+  <div id="logIn" class='center'>
+  This is the home page.<br/>
 
-<a href="{{ twitter_link }}">Click here to log into Twitter</a>
+  {{ body }}<br/>
 
-<img src='{% static "img/background.jpg" %}'>
+  <a href="{{ twitter_link }}">Click here to log into Twitter</a>
+
+  </div>
+</body>
+{% endblock %}
